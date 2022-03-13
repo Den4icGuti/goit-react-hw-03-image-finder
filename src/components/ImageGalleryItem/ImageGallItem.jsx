@@ -1,16 +1,16 @@
-import React, {Components} from 'react'
+import React, {Component} from 'react'
 
-class ImgItem extends Components { 
+class ImgItem extends Component { 
 
-  state = {}
-  
   render() { 
+
     const { img } = this.props;
     return (
-    <li className=''>
-      <img src={img} alt="" />
-    </li>
-  );
+     
+      <li>
+        <img src={img.largeImageURL} alt=''/>
+      </li>
+    )
   }
   
 }

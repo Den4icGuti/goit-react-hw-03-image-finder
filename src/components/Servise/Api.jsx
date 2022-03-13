@@ -13,3 +13,5 @@ async function fetchApi(name) {
     })
 
 }
+
+export default fetchApi;

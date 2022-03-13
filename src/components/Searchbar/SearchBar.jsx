@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import styles from '../Searchbar/SearchBar.module.css'
+import styles from '../Searchbar/SearchBar.module.css';
+
+import {toast} from 'react-toastify'
 
 class Form extends Component { 
   state = {
@@ -12,18 +14,19 @@ class Form extends Component {
   onSearch = e => { 
     this.setState({searchQuery: e.currentTarget.value})
   }
-
+  
+  notify = () => toast('Enter the name')
 
   //===Отправляем форму===//
   onSubmitForm = e => { 
-    e.preventDefault()
+    e.preventDefault();
     const { searchQuery } = this.state;
 
     if (searchQuery.trim() === '') { 
-      alert('Enter the name');
+      this.notify('Enter the name');
       return;
     }
-    this.props.onSubmit(this.state.searchQuery);
+    this.props.onSubmit(searchQuery);
     this.setState({searchQuery: ''})
   }
 
