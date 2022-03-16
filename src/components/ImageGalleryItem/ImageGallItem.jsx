@@ -1,18 +1,15 @@
-import React, {Component} from 'react'
+import PropTypes from "prop-types";
 
-class ImgItem extends Component { 
+import { ListItem,ListItemImg } from './ImgItem.styled';
 
-  render() { 
-
-    const { img } = this.props;
-    return (
-     
-      <li>
-        <img src={img.largeImageURL} alt=''/>
-      </li>
-    )
-  }
-  
+function imgItem({ src }) { 
+  <ListItem>
+    <ListItemImg src={src}/>
+  </ListItem>
 }
 
-export default ImgItem;
+imgItem.propTypes = {
+  src:PropTypes.string.isRequired
+}
+
+export default imgItem;

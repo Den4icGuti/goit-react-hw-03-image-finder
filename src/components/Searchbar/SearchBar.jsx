@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import styles from '../Searchbar/SearchBar.module.css';
+import {
+  SearchForm,
+  SearchBar,
+  SearchBtn,
+  SearchInput,
+ 
+} from './SearchBar.styled';
 
 import {toast} from 'react-toastify'
 
@@ -31,26 +37,26 @@ class Form extends Component {
   }
 
   render() { 
-    const { searchQuery } = this.state;
-    const serach = this.onSearch;
+     const { searchQuery } = this.state;
+    const search = this.onSearch;
     const submit = this.onSubmitForm;
     return (
-      <header className={styles.header}>
-        <form onSubmit={submit} className={styles.form}>
-          <button type="submit">
-            <span >Search</span>
-          </button>
-
-          <input
+    
+      <SearchBar>
+        <SearchForm onSubmit={submit}>
+          <SearchBtn type='submit'>Search...</SearchBtn>
+       
+        <SearchInput
             type="text"
+            name="input"
             value={searchQuery}
-            autoComplete="off"
+            autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
-            onChange={serach}
-          />
-        </form>
-      </header>
+            onChange={search}
+        />
+           </SearchForm>
+      </SearchBar>
     );
   }
 }
