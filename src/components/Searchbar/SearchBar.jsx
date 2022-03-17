@@ -4,7 +4,6 @@ import {
   SearchBar,
   SearchBtn,
   SearchInput,
- 
 } from './SearchBar.styled';
 
 import {toast} from 'react-toastify'
@@ -37,7 +36,7 @@ class Form extends Component {
   }
 
   render() { 
-     const { searchQuery } = this.state;
+    const { searchQuery } = this.state;
     const search = this.onSearch;
     const submit = this.onSubmitForm;
     return (

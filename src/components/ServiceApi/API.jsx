@@ -9,7 +9,7 @@ async function fetchApi(searchQuery, page) {
   //===Создаем параметры запроса в интерфейсе URLSearchParams==//
   const dataInquiry = new URLSearchParams({
     key: "25225743-62355b18deaf2a31912b18441",
-    q: searchQuery,
+    q:searchQuery,
     page: page,
     per_page: 12,
     image_type: 'photo&orientation=horizontal'

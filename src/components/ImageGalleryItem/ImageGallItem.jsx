@@ -1,15 +1,18 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-import { ListItem,ListItemImg } from './ImgItem.styled';
+import { Item,ListItemImg } from './ImgItem.styled';
 
-function imgItem({ src }) { 
-  <ListItem>
-    <ListItemImg src={src}/>
-  </ListItem>
+function imgItem({src}) { 
+  return (
+    <Item>
+      <ListItemImg src={src} alt="" />
+    </Item>
+  );
+  
 }
 
-imgItem.propTypes = {
-  src:PropTypes.string.isRequired
-}
+// imgItem.propTypes = {
+//   src:PropTypes.string.isRequired
+// }
 
 export default imgItem;

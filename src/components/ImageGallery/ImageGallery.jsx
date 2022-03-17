@@ -1,15 +1,23 @@
 // import propTypes from "prop-types";
 import { ImgGallery } from "./ImgGallery.styled";
-import ImgItem from "components/ImageGalleryItem/ImageGallItem";
+import ItemGallery from '../ImageGalleryItem/ImageGallItem'
 
 
-export function GalleryList({ img }) { 
-  <ImgGallery>
-    {img.map((id, webformatURL,largeImageURL) => (
-      <ImgItem
-        key={id}
-        src={webformatURL}
+function GalleryList({img}) { 
+  return (
+    <ImgGallery>
+      {img.map(({ id, webformatURL, largeImageURL }) => (
+     
+      <ItemGallery
+          key={id}
+          src={webformatURL}
+        
       />
     ))}
   </ImgGallery>
+  )
+  
 }
+
+export default GalleryList;
+
