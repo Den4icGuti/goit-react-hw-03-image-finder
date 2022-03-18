@@ -11,7 +11,7 @@ async function fetchApi(searchQuery, page) {
     key: "25225743-62355b18deaf2a31912b18441",
     q:searchQuery,
     page: page,
-    per_page: 12,
+    per_page: 15,
     image_type: 'photo&orientation=horizontal'
   });
 
