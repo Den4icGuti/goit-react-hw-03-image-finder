@@ -5,6 +5,7 @@ import fetchApi from '../components/ServiceApi/API';
 import ImgGallery from '../components/ImageGallery/ImageGallery';
 import BtnLoad from '../Load/BtnLoadMore';
 import Modal from '../Modal/Modal';
+import Load from '../Loader/Loading'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppStyles } from './AppStyle.styled';
@@ -19,25 +20,27 @@ class App extends Component {
     gallery: [],
     searchQuery: '',
     showImg: false,
-    modalImg:''
+    modal: "",
+    load: false,
   };
 
-
-  onToggleShowImg = () => {
+  //===Метод открытия изображения===//
+  onToggle = () => {
+    
     this.setState(({ showImg }) => ({
       showImg: !showImg,
-    })
-    );
+    }));
+  
   };
   
 //===Обновляем состояние через метод зизненного цикла componentDidUpdate===//
   componentDidUpdate(prevProps, {searchQuery,page}) { 
     //  const { searchQuery, page } = this.state;
-
+    
     if (searchQuery !== this.state.searchQuery || page !== this.state.page) { 
-      return this.fethImg(searchQuery, page);
       
-    }
+      return this.fethImg(searchQuery, page);
+      }
     this.handleScroll()
   };
 
@@ -47,6 +50,13 @@ class App extends Component {
       return { page: prevState.page + 1 }
     });
   };
+
+  //===Метод анимации загрузки===//
+  onLoading = () => { 
+    this.setState(({ load }) => ({
+      load:!load
+    }))
+  }
 
   //===Метод плавной прокрутки===//
    handleScroll = () => {
@@ -58,6 +68,7 @@ class App extends Component {
 
   fethImg = async () => {
     const { searchQuery, page } = this.state;
+    this.onLoading()
 
     try {
       const img = await fetchApi(searchQuery, page);
@@ -66,12 +77,14 @@ class App extends Component {
       });
     } catch (error) {
       console.error(error)
-    };
+    } finally { 
+     this.onLoading()
+    }
   };
 
-  onHandleClick(img) { 
-    this.setState({ modalImg: img })
-    this.onToggleShowImg()
+  onHandleClick = (img) => { 
+    this.setState({ modal: img });
+    this.onToggle()
   } 
 
   onHandleSubmit = (query) => {
@@ -83,9 +96,12 @@ class App extends Component {
   };
 
   render() { 
-    const { gallery, page,showImg,modalImg } = this.state;
+    const { gallery, page,showImg,modal,load } = this.state;
     const loadImg = this.onHandleLoadMoreImg;
     const submit = this.onHandleSubmit;
+  
+
+   
     return (
       <AppStyles>
         <ToastContainer
@@ -99,12 +115,17 @@ class App extends Component {
       
         <Form onSubmit={submit} />
         {gallery.length > 0 && (
-          <ImgGallery img={gallery} />
+          <ImgGallery img={gallery} onImgClick={this.onHandleClick} />
         )}
-        {gallery.length > 0 && gallery.length / page === 15 && (
+
+        {load && <Load />}
+        {showImg &&
+          (<Modal large={modal} onClose={this.onToggle} />)}
+        
+        {gallery.length > 0 && gallery.length / page === 12 && (
           <BtnLoad onClickLoadMore={loadImg} />
         )}
-        {showImg && <Modal large={modalImg} onClick={this.onToggleShowImg}/>}
+        
       </AppStyles>
     );
   }

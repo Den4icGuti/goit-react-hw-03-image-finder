@@ -9,14 +9,14 @@ class Modal extends Component {
    //===Метод componentDidMount монтирует комопонет в DOM===//
   componentDidMount() { 
   //===Регистрирываем слушателя===//
-  window.addEventListener('keydown',this.onHandleCloseModal)
+  window.addEventListener('keydown',this.onHandleKeyDouwn)
   };
 
 
 //===Метод  componentWillUnmount  выполняет размонтирование компонента  в DOM===//
   componentWillUnmount() { 
       //===Снимаем слушателя с регистрации===//
-    window.removeEventListener('keydown',this.onHandleCloseModal)
+    window.removeEventListener('keydown',this.onHandleKeyDouwn)
   };
 
   //===Метод заклрывает модальное окно по клику в любом месте, кроме самого модального окна===//
@@ -26,11 +26,13 @@ class Modal extends Component {
     }
   };
 
-    onHandleCloseModal = e => {
-      if (e.code === 'Escape') {
-        this.props.onClose();
-      }
-    };
+  onHandleKeyDouwn = e => {
+  
+    if (e.code === 'Escape') {
+      //===Пропс на метод закрития открытия модального окна===//
+      this.props.onClose();
+    }
+  };
 
   render() { 
 
