@@ -20,7 +20,7 @@ class Form extends Component {
     this.setState({searchQuery: e.currentTarget.value})
   }
   
-  notify = () => toast('Enter the name')
+  notify = () => toast('Enter the text')
 
   //===Отправляем форму===//
   onSubmitForm = e => { 
@@ -28,7 +28,7 @@ class Form extends Component {
     const { searchQuery } = this.state;
 
     if (searchQuery.trim() === '') { 
-      this.notify('Enter the name');
+      this.notify();
       return;
     }
     this.props.onSubmit(searchQuery);
