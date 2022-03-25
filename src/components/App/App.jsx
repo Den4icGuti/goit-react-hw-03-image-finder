@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import Container from './Conatainer/Container';
-import Form from '../components/Searchbar/SearchBar';
-import fetchApi from '../components/ServiceApi/API';
-import ImgGallery from '../components/ImageGallery/ImageGallery';
+import Form from '../Searchbar/SearchBar';
+import fetchApi from '../../ServiceApi/API';
+import ImgGallery from '../ImageGallery/ImageGallery';
 import BtnLoad from '../Load/BtnLoadMore';
 import Modal from '../Modal/Modal';
 import Load from '../Loader/Loading'
